@@ -11,13 +11,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:id="@+id/picture"></com.facebook.login.widget.ProfilePictureView>
-   <com.facebook.login.widget.LoginButton
-       android:layout_width="200sp"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:layout_marginBottom="20dp"
-       android:layout_marginTop="20dp"
-       android:id="@+id/login_button"/>
+    <com.facebook.login.widget.LoginButton
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/login_button"/>
     <Button
         android:layout_width="200sp"
         android:layout_height="wrap_content"
@@ -31,6 +31,7 @@
         android:layout_gravity="center"
         android:text="@string/share"
         android:id="@+id/share"/>
+
 
 
 </LinearLayout>

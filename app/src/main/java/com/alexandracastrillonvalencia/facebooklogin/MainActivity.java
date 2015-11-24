@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+
         callbackManager=CallbackManager.Factory.create();
         loginButton=(LoginButton)findViewById(R.id.login_button);
         profilePictureView=(ProfilePictureView)findViewById(R.id.picture);
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         share=(Button)findViewById(R.id.share);
         details=(Button)findViewById(R.id.details);
         loginButton.setReadPermissions("public_profile email");
-        share.setVisibility(View.INVISIBLE);
+        share.setVisibility(View.VISIBLE);
         details.setVisibility(View.INVISIBLE);
         details_dialog=new Dialog(this);
         details_dialog.setContentView(R.layout.dialog_details);
@@ -104,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void RequestData(){
-        GraphRequest request=GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+        GraphRequest request= GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
                 JSONObject json=response.getJSONObject();
-                try{
+                try {
                     if (json!=null){
-                        String text = "<b>Name :</b> "+json.getString("name")+"<br><br><b>Email :</b> "+json.getString("email")+"<br><br><b>Profile link :</b> "+json.getString("link");
+                        String text="<b>Name :</b> "+json.getString("name")+"<br><br><b>Email :</b> "+json.getString("email")+"<br><br><b>Profile link :</b> "+json.getString("link");
                         details_txt.setText(Html.fromHtml(text));
                         profilePictureView.setProfileId(json.getString("id"));
                     }
@@ -118,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
         });
         Bundle parameters= new Bundle();
         parameters.putString("fielsa","id,name,link,email,picture");
@@ -129,6 +130,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode,resultCode,data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
