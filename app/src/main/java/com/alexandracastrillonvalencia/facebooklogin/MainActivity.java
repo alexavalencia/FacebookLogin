@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         share=(Button)findViewById(R.id.share);
         details=(Button)findViewById(R.id.details);
         loginButton.setReadPermissions("public_profile email");
-        share.setVisibility(View.VISIBLE);
+        share.setVisibility(View.INVISIBLE);
         details.setVisibility(View.INVISIBLE);
         details_dialog=new Dialog(this);
         details_dialog.setContentView(R.layout.dialog_details);
@@ -112,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject json=response.getJSONObject();
                 try {
                     if (json!=null){
-                        String text="<b>Name :</b> "+json.getString("name")+"<br><br><b>Email :</b> "+json.getString("email")+"<br><br><b>Profile link :</b> "+json.getString("link");
+
+                        String text = "<b>Name :</b> "+json.getString("name")+"<br><br><b>Email :</b> "+json.getString("email")+"<br><br><b>Profile link :</b> "+json.getString("link");
                         details_txt.setText(Html.fromHtml(text));
                         profilePictureView.setProfileId(json.getString("id"));
                     }
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Bundle parameters= new Bundle();
-        parameters.putString("fielsa","id,name,link,email,picture");
+        parameters.putString("fields", "id,name,link,email,picture");
         request.setParameters(parameters);
         request.executeAsync();
     }
