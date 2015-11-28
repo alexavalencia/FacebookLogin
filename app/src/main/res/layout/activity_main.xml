@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +14,8 @@
             android:layout_height="200sp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:id="@+id/picture"></com.facebook.login.widget.ProfilePictureView>
+            android:id="@+id/picture">
+        </com.facebook.login.widget.ProfilePictureView>
         <com.facebook.login.widget.LoginButton
             android:layout_width="200sp"
             android:layout_height="wrap_content"
@@ -23,13 +23,13 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:id="@+id/login_button"/>
-        <Button
+        <TextView
             android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:id="@+id/details"
-            android:text="@string/show"/>
+            />
         <Button
             android:layout_width="200sp"
             android:layout_height="wrap_content"
@@ -37,8 +37,4 @@
             android:text="@string/share"
             android:id="@+id/share"/>
     </LinearLayout>
-
-
-
-
 </ScrollView>

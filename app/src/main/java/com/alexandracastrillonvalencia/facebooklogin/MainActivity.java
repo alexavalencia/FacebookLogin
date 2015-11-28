@@ -1,6 +1,5 @@
 package com.alexandracastrillonvalencia.facebooklogin;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,12 +26,12 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     CallbackManager callbackManager;
-    Button share, details;
-    ShareDialog shareDialog;
+    Button share;
+    TextView details;
     LoginButton loginButton;
     ProfilePictureView profilePictureView;
-    Dialog details_dialog;
-    TextView details_txt;
+    ShareDialog shareDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +39,18 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
 
-
-
-
-        callbackManager=CallbackManager.Factory.create();
         loginButton=(LoginButton)findViewById(R.id.login_button);
         profilePictureView=(ProfilePictureView)findViewById(R.id.picture);
-        shareDialog=new ShareDialog(this);
+        details=(TextView)findViewById(R.id.details);
         share=(Button)findViewById(R.id.share);
-        details=(Button)findViewById(R.id.details);
+
+        callbackManager=CallbackManager.Factory.create();
+
+        shareDialog=new ShareDialog(this);
         loginButton.setReadPermissions("public_profile email");
         share.setVisibility(View.INVISIBLE);
         details.setVisibility(View.INVISIBLE);
-        details_dialog=new Dialog(this);
-        details_dialog.setContentView(R.layout.dialog_details);
-        details_dialog.setTitle("Details");
-        details_txt=(TextView)details.findViewById(R.id.details);
-        details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                details_dialog.show();
-            }
-        });
+
         if (AccessToken.getCurrentAccessToken()!=null){
             RequestData();
             share.setVisibility(View.VISIBLE);
@@ -114,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     if (json!=null){
 
                         String text = "<b>Name :</b> "+json.getString("name")+"<br><br><b>Email :</b> "+json.getString("email")+"<br><br><b>Profile link :</b> "+json.getString("link");
-                        details_txt.setText(Html.fromHtml(text));
+                        details.setText(Html.fromHtml(text));
                         profilePictureView.setProfileId(json.getString("id"));
                     }
                 } catch (JSONException e) {
